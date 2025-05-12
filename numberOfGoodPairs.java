@@ -1,21 +1,22 @@
-package com.DSA.Brute;
+package com.DSA.Better;
+
+import java.util.HashMap;
 
 public class numberOfGoodPairs {
     public static void main(String[] args) {
         int[] nums = {1, 2, 3, 1, 1, 3};
-        System.out.println(numIdenticalPairs(nums));
-    }
-
-    private static int numIdenticalPairs(int[] nums) {
         int ans=0;
+        HashMap<Integer, Integer> map = new HashMap<>();
         for(int i=0;i<nums.length;i++){
-            for(int j=i+1;j<nums.length;j++){
-                if(nums[i]==nums[j]){
-                    ans++;
-                }
+            int num=nums[i];
+            if(map.containsKey(num)){
+                ans=ans+map.get(num);
+                map.put(num,map.get(num)+1);
+            }else{
+                map.put(num,1);
             }
         }
-        return ans;
+        System.out.println(ans);
     }
-
+    
 }
